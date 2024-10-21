@@ -1,0 +1,25 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: application-1
+  description: application-1
+  annotations:
+    argocd/app-name: application-1
+    github.com/project-slug: jppol-idp/application-1
+    grafana/overview-dashboard: "https://grafana.jppol.click/goto/Hw7n7PzHR?orgId=1"
+    grafana/dashboard-selector: application-1
+    backstage.io/kubernetes-namespace: test1
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/instance=application-1'
+    prometheus.io/rule: container_memory_usage_bytes{pod=~"application-1-.*"}|pod,rate(container_cpu_usage_seconds_total{pod=~"application-1-.*"}[5m])|pod
+    kubecost.com/deployment-name: "application-1"
+  links:
+    - url: https://argocd.jppol.click
+      title: ArgoCD
+      icon: dashboard
+    - url: https://grafana.jppol.click/goto/JCdVqlzHg?orgId=1
+      title: Grafana loki Access log explorer
+      icon: grafana
+spec:
+  type: service
+  owner: idp-admins
+  lifecycle: experimental
